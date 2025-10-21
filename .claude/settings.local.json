@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nchore: ESLint設定を削除しMVP Phase0に最適化\n\n- ESLint関連パッケージと設定ファイルを削除\n- package.jsonからlintスクリプトとESLint依存を削除\n- 275個の不要パッケージを削除し依存関係を最小化\n- MVP Phase0では型チェックのみで開発を進める\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

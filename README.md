@@ -23,19 +23,20 @@ npm run dev
 
 ```
 app/                 # App Router エントリ
-lib/                 # Sanity クライアントなど（Issue #2 で実装予定）
-sanity/schemas/      # Sanity スキーマ（Issue #2 で実装予定）
-scripts/             # 運用スクリプト置き場（今後追加）
-tests/               # テストコード（今後追加）
-public/              # 公開静的アセット
+lib/                 # Sanity クライアント、型定義、スラッグ生成
+sanity/schemas/      # Sanity post スキーマ
 ```
-
-`lib/` や `sanity/` はまだ空ですが、次のイシューで必要なファイルを追加していきます。
 
 ### Phase0 開発メモ
 
-- Sanity の Project ID / Dataset / Write token は Phase0 に限り `lib/sanity.ts` に直書きします（Issue #2 で追加予定）。
+- Sanity の Project ID / Dataset / Write token は Phase0 に限り `lib/sanity.ts` に直書きします。
 - リポジトリは Private を想定し、アクセストークンの取り扱いに注意してください。
+
+### Sanity 設定手順（Phase0）
+
+1. Sanity プロジェクトの ID・データセット・ write token を取得し、`lib/sanity.ts` の定数を書き換える。
+2. `sanity/schemas/post.ts` を Studio 側のスキーマに組み込み、`schemaTypes` を `sanity/schemas/index.ts` から読み込む。
+3. CLI もしくは Studio から `post` ドキュメントを 1 件作成し、`publishAt` と本文が保存できることを確認する。
 
 ### 今後の進め方
 
