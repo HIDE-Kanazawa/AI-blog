@@ -36,8 +36,8 @@ sanity/schemas/      # Sanity post スキーマ
 
 1. Sanity プロジェクトの ID・データセット・ write token を取得し、`lib/sanity.ts` の定数を書き換える。
 2. `sanity/schemas/post.ts` を Studio 側のスキーマに組み込み、`schemaTypes` を `sanity/schemas/index.ts` から読み込む。
-3. CLI もしくは Studio から `post` ドキュメントを 1 件作成し、`publishAt` と本文が保存できることを確認する。
-4. ルートページ `/` では最新 10 件を取得して表示します（`summary` が無い場合は省略されます）。
+3. CLI もしくは Studio から `post` ドキュメントを 1 件作成し、`publishAt` と本文が保存できることを確認する（`slug` は手動で設定）。
+4. ルートページ `/` では最新 10 件を表示し、`/posts/[slug]` で本文を段落表示します。
 
 ### 今後の進め方
 
