@@ -22,3 +22,11 @@ export type Post = {
   body: PortableTextBlock[];
   publishAt: string; // ISO8601
 };
+
+export type PostListItem = {
+  _id: string;
+  title: string;
+  slug: string | null;
+  summary?: string;
+  publishAt: string;
+};
