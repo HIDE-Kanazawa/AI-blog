@@ -1,7 +1,6 @@
 import Link from "next/link";
 import groq from "groq";
 import { sanityReadClient } from "@/lib/sanity";
-import { PostListItem } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
 const POSTS_QUERY = groq`
@@ -14,6 +13,14 @@ const POSTS_QUERY = groq`
     publishAt
   }
 `;
+
+type PostListItem = {
+  _id: string;
+  title: string;
+  slug: string | null;
+  summary?: string;
+  publishAt: string;
+};
 
 async function fetchPosts(): Promise<PostListItem[]> {
   try {

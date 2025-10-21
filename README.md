@@ -23,7 +23,7 @@ npm run dev
 
 ```
 app/                 # App Router エントリ（一覧ページなど）
-lib/                 # Sanity クライアント、型定義、ユーティリティ
+lib/                 # Sanity クライアントとユーティリティ
 sanity/schemas/      # Sanity post スキーマ
 ```
 
