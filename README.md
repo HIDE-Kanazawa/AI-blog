@@ -38,6 +38,7 @@ sanity/schemas/      # Sanity post スキーマ
 2. `sanity/schemas/post.ts` を Studio 側のスキーマに組み込み、`schemaTypes` を `sanity/schemas/index.ts` から読み込む。
 3. CLI もしくは Studio から `post` ドキュメントを 1 件作成し、`publishAt` と本文が保存できることを確認する（`slug` は手動で設定）。
 4. ルートページ `/` では最新 10 件を表示し、`/posts/[slug]` で本文を段落表示します。
+5. 管理ページ `/admin` からタイトル・本文を入力して `POST /api/posts/create` に送信すると、自動的に `slug` と `publishAt` が付与されて保存されます。
 
 ### 今後の進め方
 
