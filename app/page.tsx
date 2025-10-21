@@ -1,9 +1,7 @@
 import Link from "next/link";
-import groq from "groq";
 import { sanityReadClient } from "@/lib/sanity";
-import { formatDate } from "@/lib/utils";
 
-const POSTS_QUERY = groq`
+const POSTS_QUERY = `
   *[_type == "post"] | order(publishAt desc)[0...10]{
     _id,
     _type,
@@ -21,6 +19,21 @@ type PostListItem = {
   summary?: string;
   publishAt: string;
 };
+
+function formatPublishedAt(value: string) {
+  const date = value ? new Date(value) : null;
+  if (!date || Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  return date.toLocaleString("ja-JP", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
 
 async function fetchPosts(): Promise<PostListItem[]> {
   try {
@@ -97,7 +110,7 @@ export default async function Home() {
                   </Link>
                 </h2>
                 <time style={{ color: "#6b7280", fontSize: "0.9rem" }}>
-                  {formatDate(post.publishAt)}
+                  {formatPublishedAt(post.publishAt)}
                 </time>
                 {post.summary ? (
                   <p style={{ margin: 0, color: "#444" }}>{post.summary}</p>

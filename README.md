@@ -22,8 +22,8 @@ npm run dev
 ### ディレクトリ構成（Phase0 雛形）
 
 ```
-app/                 # App Router エントリ（一覧ページなど）
-lib/                 # Sanity クライアントとユーティリティ
+app/                 # App Router エントリ（一覧・詳細ページ）
+lib/                 # Sanity クライアント
 sanity/schemas/      # Sanity post スキーマ
 ```
 

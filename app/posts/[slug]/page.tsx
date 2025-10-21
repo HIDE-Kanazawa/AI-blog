@@ -1,9 +1,7 @@
 import type { ReactElement } from "react";
-import groq from "groq";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { sanityReadClient } from "@/lib/sanity";
-import { formatDate } from "@/lib/utils";
 
 type PortableTextSpan = {
   _key: string;
@@ -23,13 +21,28 @@ type PostDetail = {
   body: PortableTextBlock[];
 };
 
-const POST_QUERY = groq`
+const POST_QUERY = `
   *[_type == "post" && slug.current == $slug][0]{
     title,
     publishAt,
     body
   }
 `;
+
+function formatPublishedAt(value: string) {
+  const date = value ? new Date(value) : null;
+  if (!date || Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  return date.toLocaleString("ja-JP", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
 
 async function fetchPost(slug: string): Promise<PostDetail | null> {
   if (!slug) return null;
@@ -100,7 +113,7 @@ export default async function PostPage({
         </Link>
         <h1 style={{ margin: 0, fontSize: "2rem" }}>{post.title}</h1>
         <time style={{ color: "#6b7280", fontSize: "0.95rem" }}>
-          {formatDate(post.publishAt)}
+          {formatPublishedAt(post.publishAt)}
         </time>
       </div>
       <article>{renderBody(post.body)}</article>
